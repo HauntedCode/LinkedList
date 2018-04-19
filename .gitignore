@@ -31,9 +31,10 @@
 *.out
 *.app
 
-# Visual Studio Auto Generated Files
+# Visual Studio Auto Generated Files/Directories
 *.vs
 *.sln
 *.vcxproj
 *.filters
 *.user
+Debug/
