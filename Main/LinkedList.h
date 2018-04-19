@@ -12,7 +12,7 @@ template <typename T>
 struct Node
 {
 	T data;
-	Node * next;
+	Node<T> * next;
 };
 
 // class defition of the linked list 
@@ -69,7 +69,7 @@ public:
 private:
 
 	// pointer to the head
-	Node * head;
+	Node<T> * head;
 };
 
 #endif // LINKED_LIST_H
