@@ -8,6 +8,7 @@ template <typename T>
 inline LinkedList<T>::LinkedList()
 {
 	head = NULL;
+	size = 0;
 }
 
 // overloaded constructor that sets up a linked list with and initializer list
@@ -54,6 +55,9 @@ void LinkedList<T>::PushBack(T data)
 		temp->data = data;
 		temp->next = NULL;
 	}
+
+	// increment size
+	size++;
 }
 
 // function that places a new node at the front of a list
@@ -78,6 +82,9 @@ void LinkedList<T>::PushFront(T data)
 		head->data = data;
 		head->next = temp;
 	}
+
+	// increment size
+	size++;
 }
 
 // function that deletes the last node on a list
@@ -102,6 +109,9 @@ void LinkedList<T>::PopBack()
 	// delete the last node
 	delete temp;
 	temp = NULL;
+
+	// decrement size
+	size--;
 }
 
 // function that deletes the first node in a linked list
@@ -120,4 +130,33 @@ void LinkedList<T>::PopFront()
 	// delete first node
 	head = head->next;
 	delete temp;
+
+	// decrement size
+	size--;
+}
+
+// fuction that delets all of the contents of the linked list
+template <typename T>
+void LinkedList<T>::Clear()
+{
+	// while head is not null, delete the first item in the list
+	while (head != NULL)
+	{
+		PopFront();
+	}
+}
+
+template <typename T>
+void LinkedList<T>::Erase(int location)
+{
+	// if location is out of bounds throw an exception otherwise go ahead and erase node
+	if (location >= size)
+	{
+		throw "Linked list index is out of bounds";
+		return;
+	}
+	else
+	{
+
+	}
 }
