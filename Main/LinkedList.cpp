@@ -146,6 +146,7 @@ void LinkedList<T>::Clear()
 	}
 }
 
+// function that erases a specified node
 template <typename T>
 void LinkedList<T>::Erase(int location)
 {
@@ -155,8 +156,37 @@ void LinkedList<T>::Erase(int location)
 		throw "Linked list index is out of bounds";
 		return;
 	}
+	else if (location == 0)
+	{
+		PopFront();
+	}
+	else if (location == size - 1)
+	{
+		PopBack();
+	}
 	else
 	{
+		// create temporary pointer 
+		Node<T> * temp = head;
 
+		// pointer that points to the node before the specified node
+		Node<T> * before;
+
+		// traverse down linked list to specified node
+		for (int iter; iter != location; iter++)
+		{
+			before = temp;
+			temp = temp->next;
+		}
+
+		// get pointer to node after specified node;
+		Node<T> * after = temp->next;
+
+		// delete specified pointer and set the before pointer to the after pointer
+		delete temp;
+		before = after;
 	}
+
+	// decrement size
+	size--;
 }

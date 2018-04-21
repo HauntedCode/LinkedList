@@ -49,7 +49,7 @@ public:
 	void Erase(int location);
 
 	// returns data at specified location (indexes start at 0)
-	T GetAt(int location);
+	T GetAt(int location) const;
 
 	// sets data at specified location (indexes start at 0)
 	void SetAt(int location);
@@ -70,6 +70,9 @@ private:
 
 	// pointer to the head
 	Node<T> * head;
+
+	// keep track of the size of the linked list
+	int size;
 };
 
 #endif // LINKED_LIST_H
