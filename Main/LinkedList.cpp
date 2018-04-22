@@ -5,7 +5,7 @@
 
 // default constructor: sets up empty list and sets head pointer to null
 template <typename T>
-inline LinkedList<T>::LinkedList()
+LinkedList<T>::LinkedList()
 {
 	head = NULL;
 	size = 0;
@@ -173,7 +173,7 @@ void LinkedList<T>::Erase(int location)
 		Node<T> * before;
 
 		// traverse down linked list to specified node
-		for (int iter; iter != location; iter++)
+		for (int iter; iter <= location; iter++)
 		{
 			before = temp;
 			temp = temp->next;
@@ -190,3 +190,35 @@ void LinkedList<T>::Erase(int location)
 	// decrement size
 	size--;
 }
+
+// function that gets address of data in a specified node
+template <typename T>
+T& LinkedList<T>::At(int location)
+{
+	// if location is out of bounds throw an exception otherwise go ahead and get data in specified node
+	if (location >= size)
+	{
+		throw "Linked List index is out of bounds";
+	}
+	else
+	{
+		// define temporary pointer
+		Node<T> * temp = head;
+
+		// traverse to specified location
+		for (int iter = 0; iter <= location; iter++)
+		{
+			temp = temp->next;
+		}
+
+		return temp->data;
+	}
+}
+
+// function that gets the size of the linked list
+template <typename T>
+int LinkedList<T>::Size()
+{
+	return size;
+}
+

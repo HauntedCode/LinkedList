@@ -49,10 +49,7 @@ public:
 	void Erase(int location);
 
 	// returns data at specified location (indexes start at 0)
-	T GetAt(int location) const;
-
-	// sets data at specified location (indexes start at 0)
-	void SetAt(int location);
+	T& At(int location);
 
 	// returns the size of the linked list
 	int Size();
