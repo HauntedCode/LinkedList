@@ -15,9 +15,9 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::LinkedList(std::initializer_list<T> data)
 {
-	for (const auto& ptr : data)
+	for (const auto& iter : data)
 	{
-		PushBack(ptr);
+		PushBack(iter);
 	}
 }
 
@@ -98,7 +98,7 @@ void LinkedList<T>::PopBack()
 	}
 
 	// otherwise create temporary pointer that points to the head
-	Node<T> * temp = head;
+	Node<T>* temp = head;
 
 	// traverse down list ending at the second to last Node.
 	while (temp->next != NULL)
@@ -125,7 +125,7 @@ void LinkedList<T>::PopFront()
 	}
 
 	// otherwise create temporary pointer that points to the first node
-	Node<T> * temp = head;
+	Node<T>* temp = head;
 
 	// delete first node
 	head = head->next;
@@ -167,10 +167,10 @@ void LinkedList<T>::Erase(int location)
 	else
 	{
 		// create temporary pointer 
-		Node<T> * temp = head;
+		Node<T>* temp = head;
 
 		// pointer that points to the node before the specified node
-		Node<T> * before;
+		Node<T>* before;
 
 		// traverse down linked list to specified node
 		for (int iter; iter <= location; iter++)
@@ -180,7 +180,7 @@ void LinkedList<T>::Erase(int location)
 		}
 
 		// get pointer to node after specified node;
-		Node<T> * after = temp->next;
+		Node<T>* after = temp->next;
 
 		// delete specified pointer and set the before pointer to the after pointer
 		delete temp;
@@ -203,7 +203,7 @@ T& LinkedList<T>::At(int location)
 	else
 	{
 		// define temporary pointer
-		Node<T> * temp = head;
+		Node<T>* temp = head;
 
 		// traverse to specified location
 		for (int iter = 0; iter <= location; iter++)
@@ -222,3 +222,32 @@ int LinkedList<T>::Size()
 	return size;
 }
 
+// overload bracket operators to do indexing
+template <typename T>
+T& LinkedList<T>::operator[] (int location)
+{
+	return At(location);
+}
+
+// overload assignment operator to set a list to a list
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator= (LinkedList<T>& list)
+{
+	if (this->head == NULL)
+	{
+		Node<T>* temp = this->head;
+
+		for (int iter; iter < list.Size(); iter++)
+		{
+			temp = new Node<T>;
+			temp->data = list.At(iter);
+			temp->next = NULL;
+			temp = temp->next;
+		}
+
+	}
+	else if (this->size == list.Size())
+	{
+
+	}
+}
